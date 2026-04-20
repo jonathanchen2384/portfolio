@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonathan Chen | Portfolio</title>
+  <meta name="description" content="Portfolio website template for developers, artists, and creators." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --panel: rgba(18, 25, 51, 0.82);
+      --panel-solid: #141c38;
+      --text: #eef2ff;
+      --muted: #a8b1d1;
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      --radius: 18px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.14), transparent 25%),
+        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .shell {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 16, 32, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      font-size: 1.05rem;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.65rem 0.8rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      transition: 180ms ease;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    main {
+      padding: 2rem 0 4rem;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 280ms ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      min-height: 360px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .hero-copy p {
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.35rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 700;
+      transition: 180ms ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.2), rgba(167, 139, 250, 0.18));
+      border-color: rgba(125, 211, 252, 0.24);
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 1rem;
+    }
+
+    .avatar {
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(125, 211, 252, 0.2), rgba(167, 139, 250, 0.18)),
+        var(--panel-solid);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .stat-grid,
+    .project-grid,
+    .skill-grid,
+    .contact-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .stat-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 1rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+
+    .section-stack {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-card,
+    .skill-card,
+    .contact-card,
+    .timeline-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+
+    .project-thumb {
+      height: 180px;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      background:
+        linear-gradient(135deg, rgba(125, 211, 252, 0.14), rgba(167, 139, 250, 0.14)),
+        rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.9rem;
+    }
+
+    .tag {
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.88rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item small {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .skill-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .contact-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin-top: 0.4rem;
+      margin-bottom: 0.9rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .footer {
+      padding: 2rem 0 1rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .muted-list {
+      display: grid;
+      gap: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .two-col,
+      .contact-grid,
+      .project-grid,
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#home">Jonathan<span>.dev</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">Menu</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" data-page="home">Home</a>
+        <a href="#projects" data-page="projects">Projects</a>
+        <a href="#about" data-page="about">About</a>
+        <a href="#resume" data-page="resume">Resume</a>
+        <a href="#contact" data-page="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="page active" id="home">
+      <div class="hero">
+        <div class="card hero-copy">
+          <span class="eyebrow">Portfolio Template</span>
+          <h1>Building digital worlds and useful things.</h1>
+          <p>
+            Replace this text with your own intro. This template is designed for developers,
+            game creators, artists, and researchers who want a clean, modern portfolio that
+            works well on GitHub Pages.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>6+</strong>
+              <span>Featured Projects</span>
+            </div>
+            <div class="stat">
+              <strong>3D / XR</strong>
+              <span>Creative Focus</span>
+            </div>
+            <div class="stat">
+              <strong>Open Source</strong>
+              <span>GitHub Ready</span>
+            </div>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <div class="card avatar">JC</div>
+          <div class="card">
+            <h3>Quick Bio</h3>
+            <p>VR developer, builder of interactive systems, and occasional architect of elegant chaos.</p>
+          </div>
+          <div class="card">
+            <h3>What I Work On</h3>
+            <div class="tag-row">
+              <span class="tag">VR / XR</span>
+              <span class="tag">Games</span>
+              <span class="tag">Graphics</span>
+              <span class="tag">Web</span>
+              <span class="tag">Tools</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="section-stack">
+        <div class="card">
+          <h2>Featured Snapshot</h2>
+          <p>
+            Use this area for a short summary of your strongest work, research direction, or current focus.
+            It is perfect for a one-paragraph pitch that answers: why you, why this work, why now?
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="projects">
+      <div class="section-stack">
+        <div class="card">
+          <h2>Projects</h2>
+          <p>Swap in screenshots, links, tech stacks, and a tight summary for each project.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-thumb">Project Preview</div>
+            <h3>VR Interaction Sandbox</h3>
+            <p>A prototype environment for testing hand interactions, spatial UI, and movement systems.</p>
+            <div class="tag-row">
+              <span class="tag">Unity</span>
+              <span class="tag">C#</span>
+              <span class="tag">XR</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-thumb">Project Preview</div>
+            <h3>Procedural World Tool</h3>
+            <p>A toolchain for generating terrain, layout logic, and environmental set dressing.</p>
+            <div class="tag-row">
+              <span class="tag">Tools</span>
+              <span class="tag">Procedural</span>
+              <span class="tag">Design</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-thumb">Project Preview</div>
+            <h3>Portfolio Engine</h3>
+            <p>A polished frontend showcase for your work, resume, and professional links.</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="about">
+      <div class="section-stack">
+        <div class="card">
+          <h2>About</h2>
+          <p>
+            Tell your story here. You can talk about your technical background, creative interests,
+            leadership roles, and what kinds of projects energize you.
+          </p>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <h3>My Approach</h3>
+            <p>
+              I like building systems where engineering, design, and interaction meet in the middle.
+              My work often lives somewhere between utility and wonder.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Interests</h3>
+            <div class="tag-row">
+              <span class="tag">Rendering</span>
+              <span class="tag">Gameplay</span>
+              <span class="tag">Creative Coding</span>
+              <span class="tag">UX</span>
+              <span class="tag">Simulation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="resume">
+      <div class="section-stack">
+        <div class="card">
+          <h2>Resume</h2>
+          <p>Add your experience, education, organizations, and technical skills here.</p>
+        </div>
+        <div class="two-col">
+          <div class="timeline">
+            <div class="timeline-item">
+              <small>Experience</small>
+              <h3>VR Developer</h3>
+              <p>Describe your role, team, tools, and measurable outcomes.</p>
+            </div>
+            <div class="timeline-item">
+              <small>Leadership</small>
+              <h3>Organization / Club Role</h3>
+              <p>Describe the impact, events, and responsibilities you handled.</p>
+            </div>
+            <div class="timeline-item">
+              <small>Education</small>
+              <h3>Degree / University</h3>
+              <p>List your degree, focus, graduation date, and standout coursework if relevant.</p>
+            </div>
+          </div>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <h3>Languages</h3>
+              <p>C#, C++, JavaScript, Python</p>
+            </div>
+            <div class="skill-card">
+              <h3>Frameworks</h3>
+              <p>Unity, React, Three.js</p>
+            </div>
+            <div class="skill-card">
+              <h3>Tools</h3>
+              <p>Git, Blender, Figma, GitHub Actions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="contact">
+      <div class="section-stack">
+        <div class="card">
+          <h2>Contact</h2>
+          <p>Wire this form to Formspree, Getform, or your preferred backend if you want it to actually send messages.</p>
+        </div>
+        <div class="contact-grid">
+          <form class="project-card" onsubmit="event.preventDefault(); alert('Connect this form to a service like Formspree before using it live.');">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" />
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" />
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Say hello..."></textarea>
+            <button class="btn primary" type="submit">Send Message</button>
+          </form>
+          <div class="contact-card">
+            <h3>Elsewhere on the Internet</h3>
+            <div class="muted-list">
+              <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="mailto:you@example.com">you@example.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <p>© <span id="year"></span> Jonathan Chen. Built for GitHub Pages.</p>
+  </footer>
+
+  <script>
+    const pages = [...document.querySelectorAll('.page')];
+    const navLinks = [...document.querySelectorAll('.nav-links a')];
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navLinks');
+
+    function setActivePage(hash) {
+      const target = hash?.replace('#', '') || 'home';
+      const pageExists = pages.some(page => page.id === target);
+      const safeTarget = pageExists ? target : 'home';
+
+      pages.forEach(page => {
+        page.classList.toggle('active', page.id === safeTarget);
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.page === safeTarget);
+      });
+
+      document.title = `Jonathan Chen | ${safeTarget.charAt(0).toUpperCase() + safeTarget.slice(1)}`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('hashchange', () => {
+      setActivePage(window.location.hash);
+      navMenu.classList.remove('open');
+    });
+
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    setActivePage(window.location.hash || '#home');
+  </script>
+</body>
+</html>
