@@ -1,3 +1,3 @@
 Website:
 
-jonathanchen2384.github.io/portfolio
+https://jonathanchen2384.github.io/portfolio
