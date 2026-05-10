@@ -51,9 +51,17 @@
       text-decoration: none;
     }
 
-    img {
+    img,
+    video {
       max-width: 100%;
       display: block;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.035);
     }
 
     .shell {
@@ -283,11 +291,14 @@
       border: 1px solid var(--border);
       display: grid;
       place-items: center;
-      font-size: 4rem;
-      font-weight: 950;
-      color: var(--text);
-      letter-spacing: -0.08em;
+      overflow: hidden;
       box-shadow: var(--shadow);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .stat-grid,
@@ -362,7 +373,59 @@
       text-transform: uppercase;
       font-size: 0.86rem;
       text-align: center;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-grid,
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .media-card,
+    .gallery-card {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
       padding: 1rem;
+    }
+
+    .media-card h3,
+    .gallery-card h3 {
+      margin-top: 0.8rem;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
     }
 
     .project-meta {
@@ -480,7 +543,9 @@
       .contact-grid,
       .project-grid,
       .skill-grid,
-      .feature-grid {
+      .feature-grid,
+      .media-grid,
+      .gallery-grid {
         grid-template-columns: 1fr;
       }
 
@@ -526,6 +591,7 @@
         <a href="#projects" data-page="projects">Projects</a>
         <a href="#about" data-page="about">About</a>
         <a href="#resume" data-page="resume">Resume</a>
+        <a href="#creative" data-page="creative">Creative Work</a>
         <a href="#contact" data-page="contact">Contact</a>
       </nav>
     </div>
@@ -564,7 +630,7 @@
           </div>
         </div>
         <aside class="hero-panel">
-          <div class="avatar">JC</div>
+          <div class="avatar"><img src="assets/images/profile.png" alt="Portrait of Jonathan Chen" /></div>
           <div class="card">
             <h3>Current Focus</h3>
             <p>Designing VR tools that turn math concepts into spatial, hands-on experiences for students.</p>
@@ -615,7 +681,7 @@
         </div>
         <div class="project-grid">
           <article class="project-card featured">
-            <div class="project-thumb">VR Linear Algebra Learning Environment</div>
+            <div class="project-thumb"><img src="assets/images/VRLinearAlgebraApp.png" alt="Screenshot of the VR Linear Algebra App" /></div>
             <div class="project-meta">July 2024 - Present · Graduate Research</div>
             <h3>VR Linear Algebra App</h3>
             <p>
@@ -633,10 +699,14 @@
               <span class="tag">C#</span>
               <span class="tag">Linear Algebra</span>
             </div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://www.meta.com/experiences/vr-linear-algebra-app/26750469281244775" target="_blank" rel="noreferrer">View on Meta Store</a>
+              <a class="btn" href="#linear-algebra-demos">Watch Module Demos</a>
+            </div>
           </article>
 
           <article class="project-card featured">
-            <div class="project-thumb">VR Algebra & Function Visualization</div>
+            <div class="project-thumb"><img src="assets/images/VRAlgebraApp.png" alt="Screenshot of the VR Algebra App" /></div>
             <div class="project-meta">February 2026 - Present · VR Development</div>
             <h3>VR Algebra App</h3>
             <p>
@@ -654,7 +724,69 @@
               <span class="tag">Algebra</span>
               <span class="tag">Educational Design</span>
             </div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://www.meta.com/experiences/quadratic-function-extrema-app/26229609063376259" target="_blank" rel="noreferrer">View on Meta Store</a>
+              <a class="btn" href="#algebra-demos">Watch Module Demos</a>
+            </div>
           </article>
+        </div>
+
+        <div class="card" id="linear-algebra-demos">
+          <div class="section-kicker">Video Demos</div>
+          <h2>VR Linear Algebra Modules</h2>
+          <p>Add your MP4 demo files to <strong>assets/videos/linear-algebra/</strong>, then replace the example filenames below with your real module video names.</p>
+          <div class="media-grid">
+            <div class="media-card">
+              <video controls preload="metadata" poster="assets/images/VRLinearAlgebraApp.png">
+                <source src="assets/videos/linear-algebra/vector-manipulation.mp4" type="video/mp4" />
+              </video>
+              <h3>Vector Manipulation</h3>
+              <p>Directly manipulate vectors in 3D space.</p>
+            </div>
+            <div class="media-card">
+              <video controls preload="metadata" poster="assets/images/VRLinearAlgebraApp.png">
+                <source src="assets/videos/linear-algebra/linear-transformations.mp4" type="video/mp4" />
+              </video>
+              <h3>Linear Transformations</h3>
+              <p>Visualize transformations through spatial changes.</p>
+            </div>
+            <div class="media-card">
+              <video controls preload="metadata" poster="assets/images/VRLinearAlgebraApp.png">
+                <source src="assets/videos/linear-algebra/eigenvalues.mp4" type="video/mp4" />
+              </video>
+              <h3>Eigenvalues</h3>
+              <p>Explore eigenvectors and transformation behavior.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="algebra-demos">
+          <div class="section-kicker">Video Demos</div>
+          <h2>VR Algebra Modules</h2>
+          <p>Add your MP4 demo files to <strong>assets/videos/algebra/</strong>, then replace the example filenames below with your real module video names.</p>
+          <div class="media-grid">
+            <div class="media-card">
+              <video controls preload="metadata" poster="assets/images/VRAlgebraApp.png">
+                <source src="assets/videos/algebra/dog-park-area.mp4" type="video/mp4" />
+              </video>
+              <h3>Maximum Dog Park Area</h3>
+              <p>Use quadratic reasoning to optimize area.</p>
+            </div>
+            <div class="media-card">
+              <video controls preload="metadata" poster="assets/images/VRAlgebraApp.png">
+                <source src="assets/videos/algebra/projectile-motion.mp4" type="video/mp4" />
+              </video>
+              <h3>Projectile Motion</h3>
+              <p>Connect parabolic motion with algebraic models.</p>
+            </div>
+            <div class="media-card">
+              <video controls preload="metadata" poster="assets/images/VRAlgebraApp.png">
+                <source src="assets/videos/algebra/apple-orchard.mp4" type="video/mp4" />
+              </video>
+              <h3>Apple Orchard Optimization</h3>
+              <p>Model production and find optimal outcomes.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -759,6 +891,53 @@
               <h3>Portfolio Note</h3>
               <p>Add screenshots, demo videos, GitHub links, or build notes here as each project becomes ready to share.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="creative">
+      <div class="section-stack">
+        <div class="card">
+          <h2>Creative Work</h2>
+          <p>
+            A collection of artwork, physical media, design experiments, Arduino projects, and other builds. This section is meant to work as a living gallery, so you can keep adding images and videos over time.
+          </p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <img src="assets/images/creative/sketch-01.png" alt="Sketching work by Jonathan Chen" />
+            <h3>Sketching</h3>
+            <p>Concept sketches, studies, and visual exploration.</p>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/images/creative/digital-art-01.png" alt="Digital artwork by Jonathan Chen" />
+            <h3>Digital Art</h3>
+            <p>Illustration, composition, and digital design pieces.</p>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/images/creative/ceramics-01.png" alt="Ceramics work by Jonathan Chen" />
+            <h3>Ceramics</h3>
+            <p>Physical forms, material experiments, and crafted objects.</p>
+          </div>
+          <div class="gallery-card">
+            <video controls preload="metadata">
+              <source src="assets/videos/creative/arduino-project-01.mp4" type="video/mp4" />
+            </video>
+            <h3>Arduino Projects</h3>
+            <p>Electronics prototypes and interactive hardware experiments.</p>
+          </div>
+          <div class="gallery-card">
+            <video controls preload="metadata">
+              <source src="assets/videos/creative/design-process-01.mp4" type="video/mp4" />
+            </video>
+            <h3>Design Process</h3>
+            <p>Behind-the-scenes clips from creative and technical builds.</p>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/images/creative/project-01.png" alt="Creative project by Jonathan Chen" />
+            <h3>Experimental Builds</h3>
+            <p>Small projects where engineering and visual design overlap.</p>
           </div>
         </div>
       </div>
