@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jonathan Chen | Portfolio</title>
-  <meta name="description" content="Portfolio website template for developers, artists, and creators." />
+  <title>Jonathan Chen | VR & Game Developer</title>
+  <meta name="description" content="Jonathan Chen is a VR and game developer focused on immersive educational applications, Unity development, and interactive learning experiences." />
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --panel: rgba(18, 25, 51, 0.82);
-      --panel-solid: #141c38;
-      --text: #eef2ff;
-      --muted: #a8b1d1;
+      --bg: #070b16;
+      --bg-soft: #10182d;
+      --panel: rgba(16, 24, 45, 0.84);
+      --panel-solid: #131c34;
+      --text: #f4f7ff;
+      --muted: #aeb8d8;
+      --muted-2: #7f8aab;
       --accent: #7dd3fc;
       --accent-2: #a78bfa;
+      --accent-3: #5eead4;
       --border: rgba(255, 255, 255, 0.12);
-      --shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-      --radius: 18px;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+      --radius: 20px;
       --max-width: 1120px;
     }
 
@@ -29,17 +31,18 @@
 
     html {
       scroll-behavior: smooth;
-      background: #0b1020;
+      background: var(--bg);
     }
 
     body {
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(125, 211, 252, 0.12), transparent 30%),
-        radial-gradient(circle at top right, rgba(167, 139, 250, 0.14), transparent 25%),
-        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+        radial-gradient(circle at 8% 5%, rgba(125, 211, 252, 0.16), transparent 31%),
+        radial-gradient(circle at 88% 10%, rgba(167, 139, 250, 0.18), transparent 28%),
+        radial-gradient(circle at 50% 92%, rgba(94, 234, 212, 0.08), transparent 28%),
+        linear-gradient(180deg, #070b16 0%, #0b1020 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       min-height: 100vh;
     }
 
@@ -62,8 +65,8 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 16, 32, 0.7);
+      backdrop-filter: blur(16px);
+      background: rgba(7, 11, 22, 0.74);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
@@ -76,7 +79,7 @@
     }
 
     .brand {
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.04em;
       font-size: 1.05rem;
     }
@@ -98,24 +101,25 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.55rem;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       color: var(--muted);
-      padding: 0.7rem 0.95rem;
+      padding: 0.68rem 0.9rem;
       border-radius: 999px;
       transition: 180ms ease;
-      font-weight: 600;
+      font-weight: 700;
       border: 1px solid transparent;
+      font-size: 0.94rem;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
       color: var(--text);
       background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.09);
     }
 
     main {
@@ -144,17 +148,25 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
+      grid-template-columns: 1.32fr 0.88fr;
       gap: 1.5rem;
       align-items: stretch;
       margin-top: 1rem;
     }
 
-    .card {
+    .card,
+    .project-card,
+    .skill-card,
+    .contact-card,
+    .timeline-item,
+    .feature-card {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+    }
+
+    .card {
       padding: 1.5rem;
     }
 
@@ -163,15 +175,29 @@
       flex-direction: column;
       justify-content: center;
       gap: 1rem;
-      min-height: 360px;
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -8rem -8rem auto;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.16), rgba(167, 139, 250, 0.12));
+      filter: blur(8px);
+      pointer-events: none;
     }
 
     .eyebrow {
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-size: 0.82rem;
-      font-weight: 800;
+      font-size: 0.8rem;
+      font-weight: 900;
     }
 
     h1, h2, h3 {
@@ -179,17 +205,19 @@
     }
 
     h1 {
-      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      font-size: clamp(2.35rem, 6vw, 4.8rem);
       max-width: 12ch;
+      letter-spacing: -0.055em;
     }
 
     h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.6rem, 4vw, 2.45rem);
       margin-bottom: 0.8rem;
+      letter-spacing: -0.035em;
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1.18rem;
       margin-bottom: 0.45rem;
     }
 
@@ -197,9 +225,14 @@
       color: var(--muted);
     }
 
-    .hero-copy p {
-      font-size: 1.05rem;
-      max-width: 60ch;
+    .lead {
+      font-size: 1.08rem;
+      max-width: 64ch;
+    }
+
+    .text-link {
+      color: var(--accent);
+      font-weight: 800;
     }
 
     .cta-row {
@@ -207,6 +240,8 @@
       flex-wrap: wrap;
       gap: 0.9rem;
       margin-top: 0.35rem;
+      position: relative;
+      z-index: 1;
     }
 
     .btn {
@@ -218,7 +253,7 @@
       border-radius: 14px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.04);
-      font-weight: 700;
+      font-weight: 800;
       transition: 180ms ease;
       cursor: pointer;
     }
@@ -229,8 +264,8 @@
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, rgba(125, 211, 252, 0.2), rgba(167, 139, 250, 0.18));
-      border-color: rgba(125, 211, 252, 0.24);
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.22), rgba(167, 139, 250, 0.2));
+      border-color: rgba(125, 211, 252, 0.28);
     }
 
     .hero-panel {
@@ -241,22 +276,25 @@
 
     .avatar {
       aspect-ratio: 1 / 1;
-      border-radius: 24px;
+      border-radius: 26px;
       background:
-        linear-gradient(145deg, rgba(125, 211, 252, 0.2), rgba(167, 139, 250, 0.18)),
+        linear-gradient(145deg, rgba(125, 211, 252, 0.22), rgba(167, 139, 250, 0.18)),
         var(--panel-solid);
       border: 1px solid var(--border);
       display: grid;
       place-items: center;
       font-size: 4rem;
-      font-weight: 900;
+      font-weight: 950;
       color: var(--text);
+      letter-spacing: -0.08em;
+      box-shadow: var(--shadow);
     }
 
     .stat-grid,
     .project-grid,
     .skill-grid,
-    .contact-grid {
+    .contact-grid,
+    .feature-grid {
       display: grid;
       gap: 1rem;
     }
@@ -264,19 +302,26 @@
     .stat-grid {
       grid-template-columns: repeat(3, 1fr);
       margin-top: 1rem;
+      position: relative;
+      z-index: 1;
     }
 
     .stat {
       padding: 1rem;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.065);
     }
 
     .stat strong {
       display: block;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       color: var(--text);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
     .section-stack {
@@ -286,35 +331,47 @@
     }
 
     .project-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .project-card,
     .skill-card,
     .contact-card,
-    .timeline-item {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .timeline-item,
+    .feature-card {
       padding: 1.25rem;
     }
 
+    .project-card.featured {
+      grid-column: span 1;
+    }
+
     .project-thumb {
-      height: 180px;
-      border-radius: 14px;
+      min-height: 176px;
+      border-radius: 16px;
       margin-bottom: 1rem;
       background:
-        linear-gradient(135deg, rgba(125, 211, 252, 0.14), rgba(167, 139, 250, 0.14)),
-        rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+        linear-gradient(135deg, rgba(125, 211, 252, 0.18), rgba(167, 139, 250, 0.16)),
+        rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: grid;
       place-items: center;
-      color: var(--muted);
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .project-meta {
+      color: var(--accent);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 0.5rem;
     }
 
     .tag-row {
@@ -325,12 +382,13 @@
     }
 
     .tag {
-      padding: 0.45rem 0.75rem;
+      padding: 0.43rem 0.72rem;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.06);
       color: var(--text);
       border: 1px solid rgba(255, 255, 255, 0.07);
-      font-size: 0.88rem;
+      font-size: 0.87rem;
+      font-weight: 650;
     }
 
     .two-col {
@@ -348,8 +406,8 @@
       display: inline-block;
       margin-bottom: 0.35rem;
       color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.05em;
+      font-weight: 900;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
     }
 
@@ -357,8 +415,22 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    .feature-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .contact-grid {
       grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    ul {
+      margin-top: 0.75rem;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 0.45rem;
     }
 
     input,
@@ -389,7 +461,17 @@
       display: grid;
       gap: 0.7rem;
       color: var(--muted);
-      margin-top: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .muted-list a:hover {
+      color: var(--accent);
+    }
+
+    .note {
+      color: var(--muted-2);
+      font-size: 0.92rem;
+      margin-top: 0.75rem;
     }
 
     @media (max-width: 920px) {
@@ -397,7 +479,8 @@
       .two-col,
       .contact-grid,
       .project-grid,
-      .skill-grid {
+      .skill-grid,
+      .feature-grid {
         grid-template-columns: 1fr;
       }
 
@@ -452,46 +535,49 @@
     <section class="page active" id="home">
       <div class="hero">
         <div class="card hero-copy">
-          <span class="eyebrow">Portfolio Template</span>
-          <h1>Building digital worlds and useful things.</h1>
+          <span class="eyebrow">VR Developer · Game Developer · Creative Technologist</span>
+          <h1>Building immersive learning experiences.</h1>
+          <p class="lead">
+            I am Jonathan Chen, a VR and game developer focused on creating interactive applications that make abstract ideas easier to see, manipulate, and understand.
+          </p>
           <p>
-            Replace this text with your own intro. This template is designed for developers,
-            game creators, artists, and researchers who want a clean, modern portfolio that
-            works well on GitHub Pages.
+            My work centers on educational VR systems built in Unity, including applications used to support math instruction at San José State University.
           </p>
           <div class="cta-row">
             <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="#contact">Contact Me</a>
+            <a class="btn" href="mailto:jonathanchen1122@gmail.com">Contact Me</a>
+            <a class="btn" href="https://www.linkedin.com/in/jonathanjiachen" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
           <div class="stat-grid">
             <div class="stat">
-              <strong>6+</strong>
-              <span>Featured Projects</span>
+              <strong>Unity VR</strong>
+              <span>Educational applications</span>
             </div>
             <div class="stat">
-              <strong>3D / XR</strong>
-              <span>Creative Focus</span>
+              <strong>SJSU</strong>
+              <span>M.S. Computer Science, Dec 2025</span>
             </div>
             <div class="stat">
-              <strong>Open Source</strong>
-              <span>GitHub Ready</span>
+              <strong>Leadership</strong>
+              <span>ACM SIGGRAPH President</span>
             </div>
           </div>
         </div>
         <aside class="hero-panel">
-          <div class="card avatar">JC</div>
+          <div class="avatar">JC</div>
           <div class="card">
-            <h3>Quick Bio</h3>
-            <p>VR developer, builder of interactive systems, and occasional architect of elegant chaos.</p>
+            <h3>Current Focus</h3>
+            <p>Designing VR tools that turn math concepts into spatial, hands-on experiences for students.</p>
           </div>
           <div class="card">
-            <h3>What I Work On</h3>
+            <h3>Core Areas</h3>
             <div class="tag-row">
               <span class="tag">VR / XR</span>
-              <span class="tag">Games</span>
-              <span class="tag">Graphics</span>
-              <span class="tag">Web</span>
-              <span class="tag">Tools</span>
+              <span class="tag">Unity</span>
+              <span class="tag">Game Development</span>
+              <span class="tag">Educational Tech</span>
+              <span class="tag">Computer Graphics</span>
+              <span class="tag">Creative Coding</span>
             </div>
           </div>
         </aside>
@@ -501,9 +587,22 @@
         <div class="card">
           <h2>Featured Snapshot</h2>
           <p>
-            Use this area for a short summary of your strongest work, research direction, or current focus.
-            It is perfect for a one-paragraph pitch that answers: why you, why this work, why now?
+            I build interactive systems where engineering, design, and spatial intuition meet. My strongest work is in VR educational applications, especially tools that help students explore math through direct manipulation instead of static diagrams.
           </p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Immersive Education</h3>
+            <p>VR applications designed around classroom use, lab activities, and visual learning.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Interactive Systems</h3>
+            <p>Hands-on tools for manipulating vectors, functions, transformations, and simulations.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Creative Practice</h3>
+            <p>Art, schematics, ceramics, digital work, and Arduino experiments that feed back into my design process.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -512,37 +611,48 @@
       <div class="section-stack">
         <div class="card">
           <h2>Projects</h2>
-          <p>Swap in screenshots, links, tech stacks, and a tight summary for each project.</p>
+          <p>Selected VR projects focused on interactive learning, spatial visualization, and applied math education.</p>
         </div>
         <div class="project-grid">
-          <article class="project-card">
-            <div class="project-thumb">Project Preview</div>
-            <h3>VR Interaction Sandbox</h3>
-            <p>A prototype environment for testing hand interactions, spatial UI, and movement systems.</p>
+          <article class="project-card featured">
+            <div class="project-thumb">VR Linear Algebra Learning Environment</div>
+            <div class="project-meta">July 2024 - Present · Graduate Research</div>
+            <h3>VR Linear Algebra App</h3>
+            <p>
+              A Unity-based VR application for helping students explore linear algebra concepts through direct 3D interaction. The app has been used to support SJSU Math 39 lab sessions.
+            </p>
+            <ul>
+              <li>Supported topics including vector manipulation, vector combinations, linear systems, linear transformations, eigenvalues, Gram-Schmidt, and orthogonal complements.</li>
+              <li>Helped develop interactive modules that allow students to inspect abstract math concepts spatially.</li>
+              <li>Worked as a Graduate Researcher on an educational tool aligned with classroom instruction.</li>
+            </ul>
             <div class="tag-row">
               <span class="tag">Unity</span>
+              <span class="tag">Meta Oculus Integration</span>
+              <span class="tag">VR</span>
               <span class="tag">C#</span>
-              <span class="tag">XR</span>
+              <span class="tag">Linear Algebra</span>
             </div>
           </article>
-          <article class="project-card">
-            <div class="project-thumb">Project Preview</div>
-            <h3>Procedural World Tool</h3>
-            <p>A toolchain for generating terrain, layout logic, and environmental set dressing.</p>
+
+          <article class="project-card featured">
+            <div class="project-thumb">VR Algebra & Function Visualization</div>
+            <div class="project-meta">February 2026 - Present · VR Development</div>
+            <h3>VR Algebra App</h3>
+            <p>
+              A VR learning application for teaching function transformations and quadratic functions through applied, scenario-based problems.
+            </p>
+            <ul>
+              <li>Developed interactive lessons around maximum dog park area, projectile motion, apple orchard production optimization, and least squares.</li>
+              <li>Designed problem scenes that connect algebraic concepts to visual and physical intuition.</li>
+              <li>Built with Unity and the Meta Oculus Integration Package for immersive headset interaction.</li>
+            </ul>
             <div class="tag-row">
-              <span class="tag">Tools</span>
-              <span class="tag">Procedural</span>
-              <span class="tag">Design</span>
-            </div>
-          </article>
-          <article class="project-card">
-            <div class="project-thumb">Project Preview</div>
-            <h3>Portfolio Engine</h3>
-            <p>A polished frontend showcase for your work, resume, and professional links.</p>
-            <div class="tag-row">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
+              <span class="tag">Unity</span>
+              <span class="tag">Meta Oculus Integration</span>
+              <span class="tag">VR</span>
+              <span class="tag">Algebra</span>
+              <span class="tag">Educational Design</span>
             </div>
           </article>
         </div>
@@ -554,26 +664,27 @@
         <div class="card">
           <h2>About</h2>
           <p>
-            Tell your story here. You can talk about your technical background, creative interests,
-            leadership roles, and what kinds of projects energize you.
+            I am a VR and game developer currently completing my M.S. in Computer Science at San José State University. I enjoy building systems that make complex ideas tangible, especially when software, interaction design, and visual thinking overlap.
           </p>
         </div>
         <div class="two-col">
           <div class="card">
             <h3>My Approach</h3>
             <p>
-              I like building systems where engineering, design, and interaction meet in the middle.
-              My work often lives somewhere between utility and wonder.
+              I approach projects as both an engineer and a maker: prototype the interaction, test the learning flow, refine the visuals, and keep the experience readable for real users. In VR, clarity matters as much as spectacle.
             </p>
           </div>
           <div class="card">
-            <h3>Interests</h3>
+            <h3>Creative Work</h3>
+            <p>
+              Beyond software, I work across sketching, digital art, ceramics, contemporary design, and Arduino-based experiments. This creative practice gives me a wider toolbox for designing interfaces, objects, and experiences.
+            </p>
             <div class="tag-row">
-              <span class="tag">Rendering</span>
-              <span class="tag">Gameplay</span>
-              <span class="tag">Creative Coding</span>
-              <span class="tag">UX</span>
-              <span class="tag">Simulation</span>
+              <span class="tag">Sketching</span>
+              <span class="tag">Digital Art</span>
+              <span class="tag">Ceramics</span>
+              <span class="tag">Arduino</span>
+              <span class="tag">Design Experiments</span>
             </div>
           </div>
         </div>
@@ -584,38 +695,69 @@
       <div class="section-stack">
         <div class="card">
           <h2>Resume</h2>
-          <p>Add your experience, education, organizations, and technical skills here.</p>
+          <p>A concise overview of my education, research work, leadership, and technical focus areas.</p>
         </div>
         <div class="two-col">
           <div class="timeline">
             <div class="timeline-item">
-              <small>Experience</small>
-              <h3>VR Developer</h3>
-              <p>Describe your role, team, tools, and measurable outcomes.</p>
+              <small>Research / Development</small>
+              <h3>Graduate Researcher · VR Linear Algebra App</h3>
+              <p>July 2024 - Present</p>
+              <p>Helped develop a Unity VR application used to support SJSU Math 39 lab sessions and teach linear algebra concepts through spatial interaction.</p>
+            </div>
+            <div class="timeline-item">
+              <small>Development</small>
+              <h3>VR Algebra App Developer</h3>
+              <p>February 2026 - Present</p>
+              <p>Developed a VR application for function transformations, quadratic functions, applied optimization problems, projectile motion, and least squares.</p>
             </div>
             <div class="timeline-item">
               <small>Leadership</small>
-              <h3>Organization / Club Role</h3>
-              <p>Describe the impact, events, and responsibilities you handled.</p>
+              <h3>President · ACM SIGGRAPH Student Chapter at SJSU</h3>
+              <p>July 2023 - July 2024</p>
+              <p>Led the SJSU computer graphics student chapter, supporting a creative technical community focused on graphics, games, and interactive media.</p>
+            </div>
+            <div class="timeline-item">
+              <small>Leadership</small>
+              <h3>Treasurer · ACM SIGGRAPH Student Chapter at SJSU</h3>
+              <p>January 2023 - May 2023</p>
+              <p>Managed responsibilities related to club budgeting and organizational support.</p>
             </div>
             <div class="timeline-item">
               <small>Education</small>
-              <h3>Degree / University</h3>
-              <p>List your degree, focus, graduation date, and standout coursework if relevant.</p>
+              <h3>M.S. Computer Science · San José State University</h3>
+              <p>Expected December 2025</p>
+            </div>
+            <div class="timeline-item">
+              <small>Education</small>
+              <h3>B.S. Computer Science · San Francisco State University</h3>
+              <p>July 2023</p>
             </div>
           </div>
           <div class="skill-grid">
             <div class="skill-card">
-              <h3>Languages</h3>
-              <p>C#, C++, JavaScript, Python</p>
+              <h3>Development</h3>
+              <p>Unity, C#, VR interaction systems, game development, prototyping</p>
             </div>
             <div class="skill-card">
-              <h3>Frameworks</h3>
-              <p>Unity, React, Three.js</p>
+              <h3>XR Tools</h3>
+              <p>Meta Oculus Integration Package, headset-based interaction design, spatial UI</p>
             </div>
             <div class="skill-card">
-              <h3>Tools</h3>
-              <p>Git, Blender, Figma, GitHub Actions</p>
+              <h3>Focus Areas</h3>
+              <p>Educational technology, linear algebra visualization, function visualization, computer graphics</p>
+            </div>
+            <div class="skill-card">
+              <h3>Creative</h3>
+              <p>Sketching, digital art, ceramics, Arduino projects, contemporary design experiments</p>
+            </div>
+            <div class="skill-card">
+              <h3>Strengths</h3>
+              <p>Interactive learning, visual problem solving, research collaboration, student-facing tools</p>
+            </div>
+            <div class="skill-card">
+              <h3>Portfolio Note</h3>
+              <p>Add screenshots, demo videos, GitHub links, or build notes here as each project becomes ready to share.</p>
             </div>
           </div>
         </div>
@@ -626,24 +768,30 @@
       <div class="section-stack">
         <div class="card">
           <h2>Contact</h2>
-          <p>Wire this form to Formspree, Getform, or your preferred backend if you want it to actually send messages.</p>
+          <p>Interested in VR, games, educational technology, or interactive systems? I would be happy to connect.</p>
         </div>
         <div class="contact-grid">
-          <form class="project-card" onsubmit="event.preventDefault(); alert('Connect this form to a service like Formspree before using it live.');">
+          <form class="project-card" onsubmit="event.preventDefault(); window.location.href = 'mailto:jonathanchen1122@gmail.com?subject=Portfolio%20Inquiry&body=' + encodeURIComponent(document.getElementById('message').value);">
             <label for="name">Name</label>
             <input id="name" type="text" placeholder="Your name" />
             <label for="email">Email</label>
             <input id="email" type="email" placeholder="you@example.com" />
             <label for="message">Message</label>
             <textarea id="message" placeholder="Say hello..."></textarea>
-            <button class="btn primary" type="submit">Send Message</button>
+            <button class="btn primary" type="submit">Send Email</button>
+            <p class="note">This opens your email client. For a production contact form, connect this to Formspree, Getform, or a custom backend.</p>
           </form>
           <div class="contact-card">
             <h3>Elsewhere on the Internet</h3>
             <div class="muted-list">
-              <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href="mailto:you@example.com">you@example.com</a>
+              <a href="mailto:jonathanchen1122@gmail.com">jonathanchen1122@gmail.com</a>
+              <a href="https://www.linkedin.com/in/jonathanjiachen" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+            <div class="tag-row">
+              <span class="tag">VR Development</span>
+              <span class="tag">Unity</span>
+              <span class="tag">Educational Tech</span>
+              <span class="tag">Game Development</span>
             </div>
           </div>
         </div>
